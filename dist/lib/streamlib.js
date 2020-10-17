@@ -47,7 +47,7 @@ exports.Split = exports.Reduce = exports.Filter = exports.Map = exports.streamTo
 var stream_1 = require("stream");
 var log4js = __importStar(require("log4js"));
 var logger = log4js.getLogger();
-logger.level = 'warn';
+// logger.level = 'warn';
 /** Converts a Readable stream into a string array.
  *
  * @param r_stream A Readable stream.
