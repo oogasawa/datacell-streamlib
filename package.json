@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "./dist/lib/streamlib.js",
+	"types": "./src/lib/streamlib.ts",
 	"scripts": {
 		"build": "npx gulp",
 		"typedoc": "npx typedoc  --out docs src",
@@ -18,14 +19,15 @@
 		"url": "https://github.com/oogasawa/datacell-streamlib/issues"
 	},
 	"homepage": "https://github.com/oogasawa/datacell-streamlib#readme",
-	"dependencies": {},
+	"dependencies": {
+		"@types/log4js": "^2.3.5",
+		"log4js": "^6.3.0",
+	},
 	"devDependencies": {
 		"@types/chai": "^4.2.13",
-		"@types/log4js": "^2.3.5",
 		"@types/mocha": "^8.0.3",
 		"@types/typescript": "^2.0.0",
 		"chai": "^4.2.0",
-		"log4js": "^6.3.0",
 		"mocha": "^8.1.3",
 		"ts-node": "^9.0.0",
 		"typescript": "^3.9.7",
