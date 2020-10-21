@@ -55,69 +55,8 @@ describe('streamToArray', () => {
 });
 
 
-describe('Split', () => {
-    context("Lines of strings", () => {
-        it('should be converted into an object mode stream.', async () => {
-            const data_array = [
-                "advertisement",
-                "advise",
-                "affect",
-                "afraid",
-                "after",
-                "again",
-                "against"];
-            const data = data_array.join("\n");
-            const r_stream: Readable = Readable.from(data)
-                .pipe(new streamlib.Split());
-
-            const result: string[] = await streamlib.streamToArray(r_stream);
-            logger.debug(result);
-
-            for (let i = 0; i < data_array.length; i++) {
-                expect(data_array[i]).equals(result[i]);
-            }
-
-        });
-    });
-});
 
 
-describe('Filter', () => {
-    context("Object mode stream", () => {
-        it('should be filtered according to a given function.', async () => {
-            const data_array = [
-                "advertisement",
-                "advise",
-                "affect",
-                "afraid",
-                "after",
-                "again",
-                "against"];
-            const data = data_array.join("\n");
-            const r_stream: Readable = Readable.from(data)
-                .pipe(new streamlib.Split())
-                .pipe(new streamlib.Filter((elem: string) => {
-                    return elem.length <= 5;
-                }));
-
-            const result: string[] = await streamlib.streamToArray(r_stream);
-            logger.debug(result);
-
-
-            const ans_array = [
-                "after",
-                "again"
-            ];
-
-            for (let i = 0; i < data_array.length; i++) {
-                expect(ans_array[i]).equals(result[i]);
-            }
-
-
-        });
-    });
-
-});
 
 
 describe('Map', () => {

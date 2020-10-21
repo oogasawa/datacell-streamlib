@@ -11,6 +11,8 @@ var Split_1 = require("./Split");
 Object.defineProperty(exports, "Split", { enumerable: true, get: function () { return Split_1.Split; } });
 var Unique_1 = require("./Unique");
 Object.defineProperty(exports, "Unique", { enumerable: true, get: function () { return Unique_1.Unique; } });
+var Sort_1 = require("./Sort");
+Object.defineProperty(exports, "Sort", { enumerable: true, get: function () { return Sort_1.Sort; } });
 /** Converts a Readable stream into a string array.
  *
  * @param r_stream A Readable stream.
