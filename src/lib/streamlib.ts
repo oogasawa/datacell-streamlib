@@ -6,6 +6,8 @@ export { Split } from "./Split";
 export { Unique } from "./Unique";
 export { Sort } from "./Sort";
 
+export { AsyncReduce } from "./AsyncReduce";
+
 
 import { Readable } from "stream";
 
