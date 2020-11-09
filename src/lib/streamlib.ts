@@ -6,10 +6,93 @@ export { Split } from "./Split";
 export { Unique } from "./Unique";
 export { Sort } from "./Sort";
 
-export { AsyncReduce } from "./AsyncReduce";
+import parallelTransform from "parallel-transform";
+import { Readable, Transform } from "stream";
 
 
-import { Readable } from "stream";
+
+
+export function getAsyncFilter(
+    concurrency: number,
+    func: (arg: Buffer) => Promise<boolean>,
+    options = {}): Transform {
+
+    return parallelTransform(
+        concurrency,
+        options,
+        async function(chunk, done) {
+            if (!chunk) {
+                return done();
+            }
+            if (await func(chunk)) {
+                this.push(chunk);
+            }
+            done();
+        });
+}
+
+
+
+export function getAsyncMap(
+    concurrency: number,
+    func: (arg: Buffer) => Promise<Buffer>,
+    options = {}): Transform {
+
+    return parallelTransform(
+        concurrency,
+        options,
+        async function(chunk, done) {
+            if (!chunk) {
+                return done();
+            }
+            this.push(await func(chunk));
+            done();
+        });
+}
+
+
+
+
+// export function getUnorderedAsyncFilter(
+//     concurrency: number,
+//     func: Function,
+//     options = {}): Transform {
+
+//     return new UnorderedParallelStream(
+//         concurrency,
+//         async (chunk, enc, push, done) => {
+//             if (!chunk) {
+//                 return done();
+//             }
+//             if (await func(chunk)) {
+//                 push(chunk);
+//             }
+//             done();
+//         },
+//         options);
+// }
+
+
+
+// export function getUnorderedAsyncMap(
+//     concurrency: number,
+//     func: (arg: Buffer) => Promise<Buffer>,
+//     options = {}): Transform {
+
+//     return new UnorderedParallelStream(
+//         concurrency,
+//         async (chunk, enc, push, done) => {
+//             if (!chunk) {
+//                 push(null);
+//                 return done();
+//             }
+//             push(await func(chunk));
+//             done();
+//         },
+//         options);
+// }
+
+
 
 
 
@@ -29,7 +112,7 @@ export function streamToArray(r_stream: Readable): Promise<string[]> {
             r_stream
                 .on('readable', async () => {
                     while ((chunk = await r_stream.read()) != null) {
-                        result.push(chunk.toString());
+                        result.push(chunk.toString())
                     }
                 })
                 .on('end', () => {
@@ -40,11 +123,5 @@ export function streamToArray(r_stream: Readable): Promise<string[]> {
                 });
         });
 }
-
-
-
-
-
-
 
 

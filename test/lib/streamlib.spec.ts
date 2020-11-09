@@ -11,11 +11,24 @@ const logger = log4js.getLogger();
 // logger.level = 'debug';
 
 
+function sleep(msec: number) {
+    return new Promise(resolve => {
+        setTimeout(resolve, msec);
+    });
+}
 
-describe('streamToArray', () => {
 
-    context("Number array stream (object mode)", () => {
-        it('should be converted into a string array.', async () => {
+function random_sleep(range_from: number, range_to: number) {
+    const r = Math.floor((Math.random() * range_to) + range_from);
+    return sleep(r * 1000);
+}
+
+
+describe('#streamToArray', () => {
+
+    context('Stream of simple elements', function() {
+
+        it('should converts "number array stream" into a string array.', async function() {
             const num_array = [1, 2, 3];
             const r_stream: Readable = Readable.from(num_array);
             const result: string[] = await streamlib.streamToArray(r_stream);
@@ -26,11 +39,8 @@ describe('streamToArray', () => {
             }
         });
 
-    });
 
-
-    context("String array stream (object mode)", () => {
-        it('should be converted into a string array.', async () => {
+        it('should converted "character array stream" into a string array.', async function() {
             const data_array = [
                 "advertisement",
                 "advise",
@@ -51,74 +61,42 @@ describe('streamToArray', () => {
             }
 
         });
-    });
-});
 
 
-
-
-
-
-describe('Map', () => {
-    context("Object mode stream", () => {
-        it('should be transformed according to a given function.', async () => {
-            const data_array = [
-                "advertisement",
-                "advise",
-                "affect",
-                "afraid",
-                "after",
-                "again",
-                "against"];
-            const data = data_array.join("\n");
-            const r_stream: Readable = Readable.from(data)
-                .pipe(new streamlib.Split())
-                .pipe(new streamlib.Filter((elem: string) => {
-                    return elem.length <= 5;
-                }))
-                .pipe(new streamlib.Map((elem) => {
-                    return "@@" + elem;
-                }));
-
-            const result: string[] = await streamlib.streamToArray(r_stream);
-            logger.debug(result);
-
-
-            const ans_array = [
-                "after",
-                "again"
-            ];
-
-            for (let i = 0; i < ans_array.length; i++) {
-                expect('@@' + ans_array[i]).equals(result[i]);
-            }
-
-
-        });
     });
 
-});
 
+    context('Stream of promises', function() {
+        this.timeout(10000);
 
-
-describe('Reduce', () => {
-
-    context("Object mode number stream", () => {
-        it('should be reduced into a sum of the numbers .', async () => {
-            const num_array = [1, 2, 3, 4, 5];
+        it('should converts "number array stream" into a string array.', async function() {
+            const num_array = [1, 2, 3, 4, 5, 6, 7, 8];
             const r_stream: Readable
                 = Readable.from(num_array)
-                    .pipe(new streamlib.Reduce(
-                        () => { return 0; },
-                        (num, result) => { return result + num; }
-                    ))
+                    .pipe(streamlib.getAsyncMap(1, async (elem) => {
+                        await random_sleep(0.1, 1);
+                        return elem;
+                    }));
+
 
             const result: string[] = await streamlib.streamToArray(r_stream);
-            logger.debug(result);
 
-            expect(result[0]).equals('15');
+            logger.level = "debug";
+            for (let i = 0; i < num_array.length; i++) {
+                logger.debug(result[i]);
+            }
 
+            for (let i = 0; i < num_array.length; i++) {
+                expect(num_array[i].toString()).equals(result[i]);
+            }
+            logger.level = "error";
         });
 
+
+
     });
+
+
 });
+
+

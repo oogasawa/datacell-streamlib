@@ -12,7 +12,6 @@ const logger = log4js.getLogger();
 
 
 
-
 describe('Filter', () => {
     context("Object mode stream", () => {
         it('should be filtered according to a given function.', async () => {
