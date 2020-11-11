@@ -3,10 +3,6 @@
 import { Readable } from "stream";
 import * as streamlib from "../../src/lib/streamlib";
 
-
-import * as chai from 'chai';
-const expect = chai.expect;
-
 import * as log4js from 'log4js';
 const logger = log4js.getLogger();
 // logger.level = 'debug';
@@ -15,7 +11,7 @@ const logger = log4js.getLogger();
 
 describe('Sort', () => {
 
-    context("Object mode number stream", () => {
+    describe("Object mode number stream", () => {
         it('should be sorted in ascendent order.', async () => {
             const num_array = [4, 5, 1, 2, 3, 4, 5];
             const r_stream: Readable
@@ -27,14 +23,14 @@ describe('Sort', () => {
 
             const ans_array = [1, 2, 3, 4, 4, 5, 5];
             for (let i = 0; i < ans_array.length; i++) {
-                expect(result[i]).equals(ans_array[i].toString());
+                expect(result[i]).toEqual(ans_array[i].toString());
             }
         }
         )
     });
 
 
-    context("Object mode string stream", () => {
+    describe("Object mode string stream", () => {
         it('should be sorted in ascendent order.', async () => {
 
             const data_array = [
@@ -64,7 +60,7 @@ describe('Sort', () => {
 
 
             for (let i = 0; i < ans_array.length; i++) {
-                expect(result[i]).equals(ans_array[i].toString());
+                expect(result[i]).toEqual(ans_array[i].toString());
             }
         }
         )

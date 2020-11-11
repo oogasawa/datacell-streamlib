@@ -73,7 +73,6 @@
 						<section class="tsd-index-section ">
 							<h3>References</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_lib_streamlib_.html#asyncreduce" class="tsd-kind-icon">Async<wbr>Reduce</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_lib_streamlib_.html#filter" class="tsd-kind-icon">Filter</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_lib_streamlib_.html#map" class="tsd-kind-icon">Map</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_lib_streamlib_.html#reduce" class="tsd-kind-icon">Reduce</a></li>
@@ -85,6 +84,8 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_lib_streamlib_.html#getasyncfilter" class="tsd-kind-icon">get<wbr>Async<wbr>Filter</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_lib_streamlib_.html#getasyncmap" class="tsd-kind-icon">get<wbr>Async<wbr>Map</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_lib_streamlib_.html#streamtoarray" class="tsd-kind-icon">stream<wbr>ToArray</a></li>
 							</ul>
 						</section>
@@ -93,11 +94,6 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>References</h2>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="asyncreduce" class="tsd-anchor"></a>
-					<h3>Async<wbr>Reduce</h3>
-					Re-exports <a href="../classes/_lib_asyncreduce_.asyncreduce.html">AsyncReduce</a>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
 					<a name="filter" class="tsd-anchor"></a>
 					<h3>Filter</h3>
@@ -132,6 +128,104 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getasyncfilter" class="tsd-anchor"></a>
+					<h3>get<wbr>Async<wbr>Filter</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Async<wbr>Filter<span class="tsd-signature-symbol">(</span>concurrency<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Transform</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/oogasawa/datacell-streamlib/blob/860fca5/src/lib/streamlib.ts#L15">src/lib/streamlib.ts:15</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>concurrency: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>func: <span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>arg: <span class="tsd-signature-type">Buffer</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<ul class="tsd-parameters">
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Transform</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getasyncmap" class="tsd-anchor"></a>
+					<h3>get<wbr>Async<wbr>Map</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Async<wbr>Map<span class="tsd-signature-symbol">(</span>concurrency<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Transform</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/oogasawa/datacell-streamlib/blob/860fca5/src/lib/streamlib.ts#L36">src/lib/streamlib.ts:36</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>concurrency: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>func: <span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>arg: <span class="tsd-signature-type">Buffer</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<ul class="tsd-parameters">
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Transform</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="streamtoarray" class="tsd-anchor"></a>
 					<h3>stream<wbr>ToArray</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
@@ -141,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/oogasawa/datacell-streamlib/blob/1c6fe76/src/lib/streamlib.ts#L21">works/datacell-streamlib/src/lib/streamlib.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/oogasawa/datacell-streamlib/blob/860fca5/src/lib/streamlib.ts#L104">src/lib/streamlib.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -172,9 +266,6 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="_lib_asyncreduce_.html">&quot;lib/<wbr>Async<wbr>Reduce&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="_lib_filter_.html">&quot;lib/<wbr>Filter&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -192,6 +283,9 @@
 					<li class=" tsd-kind-module">
 						<a href="_lib_unique_.html">&quot;lib/<wbr>Unique&quot;</a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="_lib_unorderedparallelstream_.html">&quot;lib/<wbr>Unordered<wbr>Parallel<wbr>Stream&quot;</a>
+					</li>
 					<li class="current tsd-kind-module">
 						<a href="_lib_streamlib_.html">&quot;lib/streamlib&quot;</a>
 					</li>
@@ -205,9 +299,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="_lib_streamlib_.html#asyncreduce" class="tsd-kind-icon">Async<wbr>Reduce</a>
-					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
 						<a href="_lib_streamlib_.html#filter" class="tsd-kind-icon">Filter</a>
 					</li>
@@ -225,6 +316,12 @@
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
 						<a href="_lib_streamlib_.html#unique" class="tsd-kind-icon">Unique</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_lib_streamlib_.html#getasyncfilter" class="tsd-kind-icon">get<wbr>Async<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_lib_streamlib_.html#getasyncmap" class="tsd-kind-icon">get<wbr>Async<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_lib_streamlib_.html#streamtoarray" class="tsd-kind-icon">stream<wbr>ToArray</a>

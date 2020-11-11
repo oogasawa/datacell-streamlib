@@ -3,10 +3,6 @@
 import { Readable } from "stream";
 import * as streamlib from "../../src/lib/streamlib";
 
-
-import * as chai from 'chai';
-const expect = chai.expect;
-
 import * as log4js from 'log4js';
 const logger = log4js.getLogger();
 // logger.level = 'debug';
@@ -15,7 +11,7 @@ const logger = log4js.getLogger();
 
 describe('Reduce', () => {
 
-    context("Object mode number stream", () => {
+    describe("Object mode number stream", () => {
         it('should be reduced into a sum of the numbers .', async () => {
             const num_array = [1, 2, 3, 4, 5];
             const r_stream: Readable
@@ -28,7 +24,7 @@ describe('Reduce', () => {
             const result: string[] = await streamlib.streamToArray(r_stream);
             logger.debug(result);
 
-            expect(result[0]).equals('15');
+            expect(result[0]).toEqual('15');
 
         });
 

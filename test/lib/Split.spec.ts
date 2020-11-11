@@ -3,9 +3,6 @@ import { Readable } from "stream";
 import * as streamlib from "../../src/lib/streamlib";
 
 
-import * as chai from 'chai';
-const expect = chai.expect;
-
 import * as log4js from 'log4js';
 const logger = log4js.getLogger();
 // logger.level = 'debug';
@@ -15,7 +12,7 @@ const logger = log4js.getLogger();
 
 
 describe('Split', () => {
-    context("Lines of strings", () => {
+    describe("Lines of strings", () => {
         it('should be converted into an object mode stream.', async () => {
             const data_array = [
                 "advertisement",
@@ -33,7 +30,7 @@ describe('Split', () => {
             logger.debug(result);
 
             for (let i = 0; i < data_array.length; i++) {
-                expect(data_array[i]).equals(result[i]);
+                expect(data_array[i]).toEqual(result[i]);
             }
 
         });

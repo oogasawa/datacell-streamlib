@@ -2,10 +2,6 @@
 import { Readable } from "stream";
 import * as streamlib from "../../src/lib/streamlib";
 
-
-import * as chai from 'chai';
-const expect = chai.expect;
-
 import * as log4js from 'log4js';
 const logger = log4js.getLogger();
 // logger.level = 'debug';
@@ -13,7 +9,7 @@ const logger = log4js.getLogger();
 
 
 describe('Filter', () => {
-    context("Object mode stream", () => {
+    describe("Object mode stream", () => {
         it('should be filtered according to a given function.', async () => {
             const data_array = [
                 "advertisement",
@@ -40,7 +36,7 @@ describe('Filter', () => {
             ];
 
             for (let i = 0; i < data_array.length; i++) {
-                expect(ans_array[i]).equals(result[i]);
+                expect(ans_array[i]).toEqual(result[i]);
             }
 
 
