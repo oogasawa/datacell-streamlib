@@ -2,7 +2,7 @@
 import { Writable } from "stream";
 
 export class DevNull extends Writable {
-    constructor(options) {
+    constructor(options?) {
         super({ ...options, objectMode: true });
     }
 
