@@ -17,7 +17,8 @@
 		"preserveConstEnums": true,
 		"sourceMap": true,
 		"lib":[
-			"es2020.string"
+			"es2020.string",
+			"esnext.asynciterable"
 		],
 		"types": [
 			"jest",

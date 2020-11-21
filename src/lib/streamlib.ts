@@ -9,7 +9,7 @@ export { DevNull } from "./DevNull";
 
 import parallelTransform from "parallel-transform";
 import { Readable, Transform } from "stream";
-
+import { DevNull } from "./DevNull";
 
 
 
@@ -22,7 +22,7 @@ export function getAsyncFilter(
         concurrency,
         options,
         async function(chunk, done) {
-            if (!chunk) {
+            if (!chunk) { // null or undefined
                 return done();
             }
             if (await func(chunk)) {
@@ -54,48 +54,6 @@ export function getAsyncMap(
 
 
 
-// export function getUnorderedAsyncFilter(
-//     concurrency: number,
-//     func: Function,
-//     options = {}): Transform {
-
-//     return new UnorderedParallelStream(
-//         concurrency,
-//         async (chunk, enc, push, done) => {
-//             if (!chunk) {
-//                 return done();
-//             }
-//             if (await func(chunk)) {
-//                 push(chunk);
-//             }
-//             done();
-//         },
-//         options);
-// }
-
-
-
-// export function getUnorderedAsyncMap(
-//     concurrency: number,
-//     func: (arg: Buffer) => Promise<Buffer>,
-//     options = {}): Transform {
-
-//     return new UnorderedParallelStream(
-//         concurrency,
-//         async (chunk, enc, push, done) => {
-//             if (!chunk) {
-//                 push(null);
-//                 return done();
-//             }
-//             push(await func(chunk));
-//             done();
-//         },
-//         options);
-// }
-
-
-
-
 
 /** Converts a Readable stream into a string array.
  * 
@@ -111,6 +69,7 @@ export function streamToArray(r_stream: Readable): Promise<string[]> {
             let chunk: Buffer;
 
             r_stream
+                .pipe(new DevNull())
                 .on('readable', async () => {
                     while ((chunk = await r_stream.read()) != null) {
                         result.push(chunk.toString())

@@ -28,10 +28,11 @@ Object.defineProperty(exports, "Sort", { enumerable: true, get: function () { re
 var DevNull_1 = require("./DevNull");
 Object.defineProperty(exports, "DevNull", { enumerable: true, get: function () { return DevNull_1.DevNull; } });
 const parallel_transform_1 = __importDefault(require("parallel-transform"));
+const DevNull_2 = require("./DevNull");
 function getAsyncFilter(concurrency, func, options = {}) {
     return parallel_transform_1.default(concurrency, options, function (chunk, done) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!chunk) {
+            if (!chunk) { // null or undefined
                 return done();
             }
             if (yield func(chunk)) {
@@ -54,39 +55,6 @@ function getAsyncMap(concurrency, func, options = {}) {
     });
 }
 exports.getAsyncMap = getAsyncMap;
-// export function getUnorderedAsyncFilter(
-//     concurrency: number,
-//     func: Function,
-//     options = {}): Transform {
-//     return new UnorderedParallelStream(
-//         concurrency,
-//         async (chunk, enc, push, done) => {
-//             if (!chunk) {
-//                 return done();
-//             }
-//             if (await func(chunk)) {
-//                 push(chunk);
-//             }
-//             done();
-//         },
-//         options);
-// }
-// export function getUnorderedAsyncMap(
-//     concurrency: number,
-//     func: (arg: Buffer) => Promise<Buffer>,
-//     options = {}): Transform {
-//     return new UnorderedParallelStream(
-//         concurrency,
-//         async (chunk, enc, push, done) => {
-//             if (!chunk) {
-//                 push(null);
-//                 return done();
-//             }
-//             push(await func(chunk));
-//             done();
-//         },
-//         options);
-// }
 /** Converts a Readable stream into a string array.
  *
  * @param r_stream A Readable stream.
@@ -97,6 +65,7 @@ function streamToArray(r_stream) {
         let result = [];
         let chunk;
         r_stream
+            .pipe(new DevNull_2.DevNull())
             .on('readable', () => __awaiter(this, void 0, void 0, function* () {
             while ((chunk = yield r_stream.read()) != null) {
                 result.push(chunk.toString());
