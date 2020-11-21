@@ -52,6 +52,30 @@ export function getAsyncMap(
 }
 
 
+export function streamToDevNull(r_stream: Readable): Promise<void> {
+
+    return new Promise(
+        (resolve, reject) => {
+
+            //let result: string[] = [];
+            let chunk: Buffer;
+
+            r_stream
+                .on('readable', async () => {
+                    while ((chunk = await r_stream.read()) != null) {
+                        ; // result.push(chunk.toString())
+                    }
+                })
+                .on('end', () => {
+                    resolve();
+                })
+                .on('error', () => {
+                    reject();
+                });
+        });
+}
+
+
 
 
 

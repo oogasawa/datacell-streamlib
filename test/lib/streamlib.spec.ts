@@ -115,7 +115,7 @@ describe('#streamToArray', () => {
 
     describe('Stream of promises', function() {
 
-        it('should converts "number array stream" into a string array.', async function() {
+        test('#getAsyncMap', async function() {
             const num_array = [1, 2, 3, 4, 5, 6, 7, 8];
             const r_stream: Readable
                 = Readable.from(num_array)
@@ -136,30 +136,6 @@ describe('#streamToArray', () => {
                 expect(num_array[i].toString()).toEqual(result[i]);
             }
             logger.level = "error";
-        });
-
-
-
-        it('should converted "character array stream" into a string array.', async function() {
-            const data_array = [
-                "advertisement",
-                "advise",
-                "affect",
-                "afraid",
-                "after",
-                "again",
-                "against"];
-            const data = data_array.join("\n");
-            const r_stream: Readable = Readable.from(data)
-                .pipe(new streamlib.Split())
-
-            const result: string[] = await streamlib.streamToArray(r_stream);
-            logger.debug(result);
-
-            for (let i = 0; i < data_array.length; i++) {
-                expect(data_array[i]).toEqual(result[i]);
-            }
-
         });
 
 

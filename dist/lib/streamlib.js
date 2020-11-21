@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.streamToArray = exports.getAsyncMap = exports.getAsyncFilter = void 0;
+exports.streamToArray = exports.streamToDevNull = exports.getAsyncMap = exports.getAsyncFilter = void 0;
 var Map_1 = require("./Map");
 Object.defineProperty(exports, "Map", { enumerable: true, get: function () { return Map_1.Map; } });
 var Filter_1 = require("./Filter");
@@ -54,6 +54,25 @@ function getAsyncMap(concurrency, func, options = {}) {
     });
 }
 exports.getAsyncMap = getAsyncMap;
+function streamToDevNull(r_stream) {
+    return new Promise((resolve, reject) => {
+        //let result: string[] = [];
+        let chunk;
+        r_stream
+            .on('readable', () => __awaiter(this, void 0, void 0, function* () {
+            while ((chunk = yield r_stream.read()) != null) {
+                ; // result.push(chunk.toString())
+            }
+        }))
+            .on('end', () => {
+            resolve();
+        })
+            .on('error', () => {
+            reject();
+        });
+    });
+}
+exports.streamToDevNull = streamToDevNull;
 /** Converts a Readable stream into a string array.
  *
  * @param r_stream A Readable stream.
