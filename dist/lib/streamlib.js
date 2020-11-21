@@ -25,6 +25,8 @@ var Unique_1 = require("./Unique");
 Object.defineProperty(exports, "Unique", { enumerable: true, get: function () { return Unique_1.Unique; } });
 var Sort_1 = require("./Sort");
 Object.defineProperty(exports, "Sort", { enumerable: true, get: function () { return Sort_1.Sort; } });
+var DevNull_1 = require("./DevNull");
+Object.defineProperty(exports, "DevNull", { enumerable: true, get: function () { return DevNull_1.DevNull; } });
 const parallel_transform_1 = __importDefault(require("parallel-transform"));
 function getAsyncFilter(concurrency, func, options = {}) {
     return parallel_transform_1.default(concurrency, options, function (chunk, done) {

@@ -5,6 +5,7 @@ export { Reduce } from "./Reduce";
 export { Split } from "./Split";
 export { Unique } from "./Unique";
 export { Sort } from "./Sort";
+export { DevNull } from "./DevNull";
 
 import parallelTransform from "parallel-transform";
 import { Readable, Transform } from "stream";
