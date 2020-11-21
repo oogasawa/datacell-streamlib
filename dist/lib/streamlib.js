@@ -28,7 +28,6 @@ Object.defineProperty(exports, "Sort", { enumerable: true, get: function () { re
 var DevNull_1 = require("./DevNull");
 Object.defineProperty(exports, "DevNull", { enumerable: true, get: function () { return DevNull_1.DevNull; } });
 const parallel_transform_1 = __importDefault(require("parallel-transform"));
-const DevNull_2 = require("./DevNull");
 function getAsyncFilter(concurrency, func, options = {}) {
     return parallel_transform_1.default(concurrency, options, function (chunk, done) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -65,7 +64,6 @@ function streamToArray(r_stream) {
         let result = [];
         let chunk;
         r_stream
-            .pipe(new DevNull_2.DevNull())
             .on('readable', () => __awaiter(this, void 0, void 0, function* () {
             while ((chunk = yield r_stream.read()) != null) {
                 result.push(chunk.toString());

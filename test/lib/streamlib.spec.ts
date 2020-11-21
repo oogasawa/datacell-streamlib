@@ -1,5 +1,5 @@
-
-import { Readable } from "stream";
+import lineByLine from "n-readlines";
+import { Readable, Transform } from "stream";
 import * as streamlib from "../../src/lib/streamlib";
 import * as collections from "datacell-collections";
 
@@ -7,6 +7,7 @@ import * as collections from "datacell-collections";
 import * as log4js from 'log4js';
 const logger = log4js.getLogger();
 // logger.level = 'debug';
+
 
 
 function sleep(msec: number) {
@@ -20,6 +21,22 @@ function sleep(msec: number) {
 function random_sleep(range_from: number, range_to: number) {
     const r = Math.floor((Math.random() * range_to) + range_from);
     return sleep(r * 1000);
+}
+
+function read_data(fname: string): string[] {
+
+    const result: string[] = [];
+
+    const liner = new lineByLine(fname);
+    let line: false | Buffer;
+    while (line = liner.next()) {
+        if (line.toString().length === 0) {
+            continue;
+        }
+        result.push(line.toString());
+    }
+
+    return result;
 }
 
 
@@ -59,6 +76,36 @@ describe('#streamToArray', () => {
             for (let i = 0; i < data_array.length; i++) {
                 expect(data_array[i]).toEqual(result[i]);
             }
+
+        });
+
+
+    });
+
+
+    describe('Stream of many elements (exceeding highWaterMark).', () => {
+
+        test('should converts "number array stream" into a string array.', async () => {
+
+            // Reads data from a file into an object array.
+            let data: string[] = read_data("test/data.txt");
+
+            let charCount = 0;
+            const r_stream: Readable
+                = Readable.from(data)
+                    .pipe(new Transform({
+                        readableObjectMode: true,
+                        writableObjectMode: true,
+                        highWaterMark: 4, // set small highwatermark
+                        transform(chunk, encode, done) {
+                            charCount += chunk.toString().length;
+                            this.push(chunk);
+                            done();
+                        }
+                    }));
+            const result: string[] = await streamlib.streamToArray(r_stream);
+            expect(charCount > 5000).toBeTruthy();
+            expect(result.length).toEqual(198);
 
         });
 

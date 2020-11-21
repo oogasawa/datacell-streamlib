@@ -69,7 +69,6 @@ export function streamToArray(r_stream: Readable): Promise<string[]> {
             let chunk: Buffer;
 
             r_stream
-                .pipe(new DevNull())
                 .on('readable', async () => {
                     while ((chunk = await r_stream.read()) != null) {
                         result.push(chunk.toString())
