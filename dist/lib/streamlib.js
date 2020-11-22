@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.streamToArray = exports.streamToDevNull = exports.getAsyncMap = exports.getAsyncFilter = void 0;
+exports.streamToArray = exports.streamToDevNull = exports.getAsyncUnique = exports.getAsyncMap = exports.getAsyncFilter = void 0;
 var Map_1 = require("./Map");
 Object.defineProperty(exports, "Map", { enumerable: true, get: function () { return Map_1.Map; } });
 var Filter_1 = require("./Filter");
@@ -54,6 +54,28 @@ function getAsyncMap(concurrency, func, options = {}) {
     });
 }
 exports.getAsyncMap = getAsyncMap;
+function getAsyncUnique(r_stream) {
+    return new Promise((resolve, reject) => {
+        let result = [];
+        let chunk;
+        r_stream
+            .on('readable', () => __awaiter(this, void 0, void 0, function* () {
+            while ((chunk = yield r_stream.read()) != null) {
+                const str = chunk.toString();
+                if (result.indexOf(str) < 0) {
+                    result.push(str);
+                }
+            }
+        }))
+            .on('end', () => {
+            resolve(result);
+        })
+            .on('error', () => {
+            reject();
+        });
+    });
+}
+exports.getAsyncUnique = getAsyncUnique;
 function streamToDevNull(r_stream) {
     return new Promise((resolve, reject) => {
         //let result: string[] = [];

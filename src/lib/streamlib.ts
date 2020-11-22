@@ -7,6 +7,7 @@ export { Unique } from "./Unique";
 export { Sort } from "./Sort";
 export { DevNull } from "./DevNull";
 
+
 import parallelTransform from "parallel-transform";
 import { Readable, Transform } from "stream";
 import { DevNull } from "./DevNull";
@@ -50,6 +51,34 @@ export function getAsyncMap(
             done();
         });
 }
+
+
+export function getAsyncUnique(r_stream: Readable): Promise<string[]> {
+
+    return new Promise(
+        (resolve, reject) => {
+
+            let result: string[] = [];
+            let chunk: Buffer;
+
+            r_stream
+                .on('readable', async () => {
+                    while ((chunk = await r_stream.read()) != null) {
+                        const str = chunk.toString();
+                        if (result.indexOf(str) < 0) {
+                            result.push(str);
+                        }
+                    }
+                })
+                .on('end', () => {
+                    resolve(result);
+                })
+                .on('error', () => {
+                    reject();
+                });
+        });
+}
+
 
 
 export function streamToDevNull(r_stream: Readable): Promise<void> {
