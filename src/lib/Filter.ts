@@ -3,11 +3,11 @@ import { Transform } from "stream";
 
 export class Filter extends Transform {
 
-    func: (any) => any;
+    func: (arg0: any) => any;
 
     // tail: string;
 
-    constructor(func: (any) => any, options?) {
+    constructor(func: (arg0: any) => any, options?: any) {
         super({
             ...options,
             readableObjectMode: true,

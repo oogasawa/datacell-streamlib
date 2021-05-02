@@ -7,7 +7,7 @@ export class Split extends Transform {
 
     tail: string;
 
-    constructor(re: RegExp = /\n/, options?) {
+    constructor(re: RegExp = /\n/, options?: any) {
         super({
             ...options,
             readableObjectMode: true,

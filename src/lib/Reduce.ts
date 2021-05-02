@@ -12,7 +12,7 @@ export class Reduce extends Transform {
 
     // tail: string;
 
-    constructor(initFunc: () => any, func: (arg0: any, arg1: any) => any, options?) {
+    constructor(initFunc: () => any, func: (arg0: any, arg1: any) => any, options?: any) {
         super({
             ...options,
             readableObjectMode: true,

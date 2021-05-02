@@ -1,6 +1,6 @@
 {
 	"name": "datacell-streamlib",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "",
 	"main": "./dist/lib/streamlib.js",
 	"types": "./src/lib/streamlib.ts",

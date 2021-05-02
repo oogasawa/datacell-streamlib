@@ -22,7 +22,7 @@ export class UnorderedParallelStream extends Transform {
         this.terminateCb = null;
     }
 
-    _transform(chunk, enc, done) {
+    _transform(chunk: string | Buffer, enc: string, done: Function) {
         this.running++;
         this.userTransform(
             chunk,
@@ -39,7 +39,7 @@ export class UnorderedParallelStream extends Transform {
         done()
     }
 
-    _flush(done) {
+    _flush(done: Function) {
         if (this.running > 0) {
             this.terminateCb = done;
         } else {
@@ -47,7 +47,7 @@ export class UnorderedParallelStream extends Transform {
         }
     }
 
-    _onComplete(err) {
+    _onComplete(err: Function) {
         this.running--;
         if (err) {
             return this.emit('error', err);
