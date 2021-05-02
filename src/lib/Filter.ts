@@ -17,7 +17,7 @@ export class Filter extends Transform {
         this.func = func;
     }
 
-    _transform(chunk: string | Buffer, encoding: string, callback: Function) {
+    _transform(chunk: string | Buffer | object, encoding: string, callback: Function) {
         if (this.func(chunk)) {
             this.push(chunk);
         }

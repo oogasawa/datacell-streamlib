@@ -24,7 +24,7 @@ export class Sort extends Transform {
 
     }
 
-    _transform(chunk: string | Buffer, encoding: string, callback: Function) {
+    _transform(chunk: string | Buffer | object, encoding: string, callback: Function) {
 
         this.dataSet.push(chunk.toString());
         callback();

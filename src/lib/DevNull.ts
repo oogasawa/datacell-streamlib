@@ -6,7 +6,7 @@ export class DevNull extends Writable {
         super({ ...options, objectMode: true });
     }
 
-    _write(chunk: string | Buffer, encoding: string, done: Function) {
+    _write(chunk: string | Buffer | object, encoding: string, done: Function) {
         done();
     }
 

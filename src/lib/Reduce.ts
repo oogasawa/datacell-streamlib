@@ -24,7 +24,7 @@ export class Reduce extends Transform {
         this.result = null;
     }
 
-    _transform(chunk: string | Buffer, encoding: string, callback: Function) {
+    _transform(chunk: string | Buffer | object, encoding: string, callback: Function) {
 
         if (this.result === null) {
             this.result = this.initFunc();

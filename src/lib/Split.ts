@@ -18,7 +18,7 @@ export class Split extends Transform {
         this.tail = '';
     }
 
-    _transform(chunk: string | Buffer, encoding: string, callback: Function) {
+    _transform(chunk: string | Buffer | object, encoding: string, callback: Function) {
         const chunkStr: string = (this.tail + chunk);
         const matchedPos = chunkStr.search(this.re);
         if (matchedPos >= 0) {
